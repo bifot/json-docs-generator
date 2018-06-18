@@ -5,7 +5,7 @@ describe('generator', () => {
     jsonDocs({
       path: 'example.md',
       title: 'Simple doc',
-      description: 'Manage users & books via API',
+      description: 'Manage users via API',
       baseUrl: 'http://localhost:8080/api/v2',
       tags: {
         users: {
