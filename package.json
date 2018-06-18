@@ -1,0 +1,30 @@
+{
+  "name": "json-docs-generator",
+  "version": "0.0.1",
+  "description": "Util for describe REST APIs via docs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./index.test.js --exit --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bifot/json-docs-generator.git"
+  },
+  "keywords": [
+    "json",
+    "docs",
+    "rest",
+    "api",
+    "rest",
+    "api",
+    "generator",
+    "documentation",
+    "doc"
+  ],
+  "author": "Mikhail Semin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bifot/json-docs/issues"
+  },
+  "homepage": "https://github.com/bifot/json-docs#readme"
+}
