@@ -1,13 +1,13 @@
 # Simple doc
 
-Manage users & books via API
+Manage users via API
 
 Base URL: http://localhost:8080/api/v2
 
 ## Users
 
-- [Get users](get-users)
-- [Create user](create-user)
+- [Get users](#get-users)
+- [Create user](#create-user)
 
 ### Get users
 
