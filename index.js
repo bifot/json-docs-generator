@@ -29,7 +29,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
     const structure = Object.values(endpoints)
       .map((item) => {
         return Object.values(item).map((method) => {
-          return `- [${method.title}](${encodeURI(method.title.toLowerCase().replace(/\s/g, '-'))})`
+          return `- [${method.title}](#${encodeURI(method.title.toLowerCase().replace(/\s/g, '-'))})`
         })
       })
       .reduce((a, b) => [...a, ...b], [])
