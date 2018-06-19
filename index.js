@@ -38,7 +38,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
     content.push(structure.join('\n'))
 
     for (const [endpoint, requests] of Object.entries(endpoints)) {
-      for (const [requestType, { title, headers, body, response }] of Object.entries(requests)) {
+      for (const [requestType, { title, headers, body, response, errors }] of Object.entries(requests)) {
         content.push(`### ${title}`)
         content.push('#### URL')
         content.push([
@@ -74,6 +74,15 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
             JSON.stringify(response, null, 2),
             '```'
           ].join('\n'))
+        }
+
+        if (errors) {
+          content.push('#### Errors')
+          content.push(
+            Object.entries(errors)
+              .map(([ code, description ]) => `- **${code}** - ${description}`)
+              .join('\n')
+          )
         }
       }
     }

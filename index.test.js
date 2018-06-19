@@ -23,6 +23,11 @@ describe('generator', () => {
             response: {
               first_name: 'string',
               last_name: 'string'
+            },
+            errors: {
+              401: 'Unauthorized',
+              404: 'Not found',
+              429: 'Too many requests'
             }
           },
           post: {
@@ -46,6 +51,10 @@ describe('generator', () => {
             },
             response: {
               ok: true
+            },
+            errors: {
+              400: 'Invalid data',
+              429: 'Too many requests'
             }
           }
         }

@@ -30,6 +30,12 @@ GET /users
 }
 ```
 
+#### Errors
+
+- **401** - Unauthorized
+- **404** - Not found
+- **429** - Too many requests
+
 ### Create user
 
 #### URL
@@ -53,3 +59,8 @@ POST /users
   "ok": true
 }
 ```
+
+#### Errors
+
+- **400** - Invalid data
+- **429** - Too many requests
