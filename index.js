@@ -5,7 +5,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
     `# ${title}`,
     description,
     `Base URL: ${baseUrl}`
-  ]
+  ].filter(item => !!item)
 
   for (const [endpoint, methods] of Object.entries(endpoints)) {
     for (const [requestType, method] of Object.entries(methods)) {
