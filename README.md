@@ -17,6 +17,10 @@ $ npm test
 ## Usage
 
 
+```sh
+$ generate-docs --input ./api.js --output ./docs.md
+```
+
 **api.js**:
 
 ```js
@@ -78,10 +82,6 @@ module.exports = {
     },
   },
 }
-```
-
-```sh
-$ generate-docs --input ./api.js --output ./docs.md
 ```
 
 The output you can see [here](assets/example.md).
