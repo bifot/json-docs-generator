@@ -1,10 +1,13 @@
 {
   "name": "json-docs-generator",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Util for describe REST APIs via docs.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha ./index.test.js --exit --timeout 5000"
+  },
+  "bin": {
+    "generate-docs": "./src/cli.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/bifot/json-docs/issues"
   },
-  "homepage": "https://github.com/bifot/json-docs#readme"
+  "homepage": "https://github.com/bifot/json-docs#readme",
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
 }

@@ -1,25 +1,3 @@
-# json-docs-generator
-
-Util for describe REST APIs via docs.
-
-## Install
-
-```sh
-$ npm i json-docs-generator
-```
-
-## Tests
-
-```sh
-$ npm test
-```
-
-## Usage
-
-
-**api.js**:
-
-```js
 module.exports = {
   path: './example.md',
   title: 'Simple doc',
@@ -78,14 +56,3 @@ module.exports = {
     },
   },
 }
-```
-
-```sh
-$ generate-docs --input ./api.js --output ./docs.md
-```
-
-The output you can see [here](assets/example.md).
-
-## License
-
-MIT.

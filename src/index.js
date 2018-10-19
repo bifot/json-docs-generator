@@ -1,10 +1,12 @@
 const fs = require('./utils/fs')
 
-module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) => {
+module.exports = async ({
+  path, title, description, baseUrl, tags, endpoints,
+}) => {
   const content = [
     `# ${title}`,
     description,
-    `Base URL: ${baseUrl}`
+    `Base URL: ${baseUrl}`,
   ].filter(item => !!item)
 
   for (const [endpoint, methods] of Object.entries(endpoints)) {
@@ -27,24 +29,22 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
 
   for (const { title, endpoints } of Object.values(tags)) {
     const structure = Object.values(endpoints)
-      .map((item) => {
-        return Object.values(item).map((method) => {
-          return `- [${method.title}](#${encodeURI(method.title.toLowerCase().replace(/\s/g, '-'))})`
-        })
-      })
+      .map(item => Object.values(item).map(method => `- [${method.title}](#${encodeURI(method.title.toLowerCase().replace(/\s/g, '-'))})`))
       .reduce((a, b) => [...a, ...b], [])
 
     content.push(`## ${title}`)
     content.push(structure.join('\n'))
 
     for (const [endpoint, requests] of Object.entries(endpoints)) {
-      for (const [requestType, { title, headers, body, response, errors }] of Object.entries(requests)) {
+      for (const [requestType, {
+        title, headers, body, response, errors,
+      }] of Object.entries(requests)) {
         content.push(`### ${title}`)
         content.push('#### URL')
         content.push([
           '```sh',
           `${requestType.toUpperCase()} ${endpoint}`,
-          '```'
+          '```',
         ].join('\n'))
 
         if (headers) {
@@ -52,7 +52,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
           content.push(
             headers
               .map(item => `- ${item}`)
-              .join('\n')
+              .join('\n'),
           )
         }
 
@@ -61,9 +61,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
           content.push([
             '| Parameter | Type | Required | Description',
             '|:---------:|:----:|:--------:|:----------:|',
-            ...Object.entries(body).map(([parameter, { type, required, description = ' - ' }]) => {
-              return `| ${parameter} | ${type} | ${required ? 'yes' : 'no'} | ${description} |`
-            })
+            ...Object.entries(body).map(([parameter, { type, required, description = ' - ' }]) => `| ${parameter} | ${type} | ${required ? 'yes' : 'no'} | ${description} |`),
           ].join('\n'))
         }
 
@@ -72,7 +70,7 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
           content.push([
             '```js',
             JSON.stringify(response, null, 2),
-            '```'
+            '```',
           ].join('\n'))
         }
 
@@ -80,8 +78,8 @@ module.exports = async ({ path, title, description, baseUrl, tags, endpoints }) 
           content.push('#### Errors')
           content.push(
             Object.entries(errors)
-              .map(([ code, description ]) => `- **${code}** - ${description}`)
-              .join('\n')
+              .map(([code, description]) => `- **${code}** - ${description}`)
+              .join('\n'),
           )
         }
       }
