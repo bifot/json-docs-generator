@@ -5,13 +5,8 @@ Util for describe REST APIs via docs.
 ## Install
 
 ```sh
-$ npm i json-docs-generator
-```
-
-## Tests
-
-```sh
-$ npm test
+$ npm i json-docs-generator -D  # local dev
+$ npm i json-docs-generator -g  # global
 ```
 
 ## Usage
