@@ -70,7 +70,7 @@ module.exports = async ({
           content.push([
             '| Parameter | Type | Required | Description',
             '|:---------:|:----:|:--------:|:----------:|',
-            ...Object.entries(body).map(([parameter, { type, required, description = ' - ' }]) => `| ${parameter} | ${type} | ${required ? 'yes' : 'no'} | ${description} |`),
+            ...Object.entries(params).map(([parameter, { type, required, description = ' - ' }]) => `| ${parameter} | ${type} | ${required ? 'yes' : 'no'} | ${description} |`),
           ].join('\n'))
         }
 
