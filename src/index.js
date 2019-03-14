@@ -37,7 +37,7 @@ module.exports = async ({
 
     for (const [endpoint, requests] of Object.entries(endpoints)) {
       for (const [requestType, {
-        title, headers, body, response, errors,
+        title, headers, body, params, response, errors,
       }] of Object.entries(requests)) {
         content.push(`### ${title}`)
         content.push('#### URL')
@@ -58,6 +58,15 @@ module.exports = async ({
 
         if (body) {
           content.push('#### Body')
+          content.push([
+            '| Parameter | Type | Required | Description',
+            '|:---------:|:----:|:--------:|:----------:|',
+            ...Object.entries(body).map(([parameter, { type, required, description = ' - ' }]) => `| ${parameter} | ${type} | ${required ? 'yes' : 'no'} | ${description} |`),
+          ].join('\n'))
+        }
+
+        if (params) {
+          content.push('#### Params')
           content.push([
             '| Parameter | Type | Required | Description',
             '|:---------:|:----:|:--------:|:----------:|',
