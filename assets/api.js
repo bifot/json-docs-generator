@@ -2,16 +2,18 @@ module.exports = {
   path: './example.md',
   title: 'Simple doc',
   description: 'Manage users via API',
-  baseUrl: 'http://localhost:8080/api/v2',
   tags: {
     users: {
       title: 'Users',
+      baseUrl: 'http://localhost:8080/api/v2',
     },
     ws: {
       title: 'WebSockets',
+      baseUrl: 'ws://localhost:3000',
     },
     udp: {
       title: 'UDP',
+      baseUrl: 'localhost:5000',
     },
   },
   endpoints: {
@@ -65,7 +67,7 @@ module.exports = {
     'subscribe': {
       title: 'Subscribe on event',
       params: {
-        channel: String,
+        channels: [String, Array],
       },
       tags: ['ws'],
     },

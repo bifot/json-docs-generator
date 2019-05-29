@@ -18,7 +18,7 @@ module.exports = async (options) => {
   const content = [
     `# ${title}`,
     description,
-    `Base URL: ${baseUrl}`,
+    baseUrl && `Base URL: ${baseUrl}`,
   ].filter(Boolean);
 
   for (const [endpoint, methods] of Object.entries(endpoints)) {
@@ -55,7 +55,7 @@ module.exports = async (options) => {
     });
   }
 
-  for (const { title, endpoints, actions } of Object.values(tags)) {
+  for (const { title, baseUrl, endpoints, actions } of Object.values(tags)) {
     const links = [];
 
     if (endpoints) {
@@ -73,6 +73,11 @@ module.exports = async (options) => {
     }
 
     content.push(`## ${title}`);
+
+    if (baseUrl) {
+      content.push(`Base URL: ${baseUrl}`);
+    }
+
     content.push(links.join('\n'));
 
     if (endpoints) {

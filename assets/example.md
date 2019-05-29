@@ -2,9 +2,9 @@
 
 Manage users via API
 
-Base URL: http://localhost:8080/api/v2
-
 ## Users
+
+Base URL: http://localhost:8080/api/v2
 
 - [Get users](#get-users)
 - [Create user](#create-user)
@@ -67,6 +67,8 @@ POST /users
 
 ## WebSockets
 
+Base URL: ws://localhost:3000
+
 - [Subscribe on event](#subscribe-on-event)
 
 ### Subscribe on event
@@ -81,9 +83,11 @@ subscribe
 
 | Parameter | Type | Required | Description
 |:---------:|:----:|:--------:|:----------:|
-| channel | string | yes | - |
+| channels | string/array | yes | - |
 
 ## UDP
+
+Base URL: localhost:5000
 
 - [Check authorization](#check-authorization)
 
