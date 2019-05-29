@@ -66,6 +66,7 @@ module.exports = {
   actions: {
     'subscribe': {
       title: 'Subscribe on event',
+      description: 'I don\'t know what is it',
       params: {
         channels: [String, Array],
       },

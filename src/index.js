@@ -135,9 +135,13 @@ module.exports = async (options) => {
 
     if (actions) {
       Object.entries(actions).forEach(([action, meta]) => {
-        const { params, response } = meta;
+        const { title, description, params, response } = meta;
 
-        content.push(`### ${meta.title}`);
+        content.push(`### ${title}`);
+
+        if (description) {
+          content.push(description);
+        }
 
         content.push('#### Event');
         content.push(buildCode('sh', action));

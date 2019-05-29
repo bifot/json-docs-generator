@@ -73,6 +73,8 @@ Base URL: ws://localhost:3000
 
 ### Subscribe on event
 
+I don't know what is it
+
 #### Event
 
 ```sh
