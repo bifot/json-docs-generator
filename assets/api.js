@@ -7,6 +7,12 @@ module.exports = {
     users: {
       title: 'Users',
     },
+    ws: {
+      title: 'WebSockets',
+    },
+    udp: {
+      title: 'UDP',
+    },
   },
   endpoints: {
     '/users': {
@@ -55,4 +61,24 @@ module.exports = {
       },
     },
   },
-}
+  actions: {
+    'subscribe': {
+      title: 'Subscribe on event',
+      params: {
+        channel: String,
+      },
+      tags: ['ws'],
+    },
+    'checkAuth': {
+      title: 'Check authorization',
+      tags: ['udp'],
+      params: {
+        name: String,
+        password: String,
+      },
+      response: {
+        ok: Boolean,
+      },
+    },
+  },
+};
