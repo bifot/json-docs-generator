@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const path = require('path')
-const generator = require('./')
+const path = require('path');
+const generate = require('./');
 
-const input = process.argv[process.argv.indexOf('--input') + 1]
-const output = process.argv[process.argv.indexOf('--output') + 1]
+const input = process.argv[process.argv.indexOf('--input') + 1];
+const output = process.argv[process.argv.indexOf('--output') + 1];
 
-generator({
+generate({
   ...require(path.resolve(input)),
-  path: path.resolve(output),
-})
+  output: path.resolve(output),
+});

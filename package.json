@@ -1,10 +1,10 @@
 {
   "name": "json-docs-generator",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Util for describe REST APIs via docs.",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha ./index.test.js --exit --timeout 5000"
+    "test": "./src/cli.js --input ./assets/api.js --output ./assets/example.md"
   },
   "bin": {
     "generate-docs": "./src/cli.js"

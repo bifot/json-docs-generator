@@ -1,6 +1,6 @@
-const fs = require('fs')
-const util = require('util')
+const fs = require('fs');
+const { promisify } = require('util');
 
 module.exports = {
-  writeFile: util.promisify(fs.writeFile),
-}
+  writeFile: promisify(fs.writeFile),
+};
