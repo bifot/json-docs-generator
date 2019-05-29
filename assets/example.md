@@ -25,8 +25,8 @@ GET /users
 
 ```js
 {
-  "first_name": "string",
-  "last_name": "string"
+  first_name: 'string',
+  last_name: 'string'
 }
 ```
 
@@ -50,13 +50,13 @@ POST /users
 |:---------:|:----:|:--------:|:----------:|
 | first_name | string | yes | User's firstname |
 | last_name | string | yes | User's lastname |
-| photo | string | no |  -  |
+| photo | string | no | - |
 
 #### Response
 
 ```js
 {
-  "ok": true
+  ok: true
 }
 ```
 
@@ -64,3 +64,48 @@ POST /users
 
 - **400** - Invalid data
 - **429** - Too many requests
+
+## WebSockets
+
+- [Subscribe on event](#subscribe-on-event)
+
+### Subscribe on event
+
+#### Event
+
+```sh
+subscribe
+```
+
+#### Params
+
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| channel | string | yes | - |
+
+## UDP
+
+- [Check authorization](#check-authorization)
+
+### Check authorization
+
+#### Event
+
+```sh
+checkAuth
+```
+
+#### Params
+
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| name | string | yes | - |
+| password | string | yes | - |
+
+#### Response
+
+```js
+{
+  ok: 'boolean'
+}
+```
