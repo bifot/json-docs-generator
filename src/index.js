@@ -11,8 +11,8 @@ module.exports = async (options) => {
     description,
     baseUrl,
     tags,
-    endpoints,
-    actions,
+    endpoints = {},
+    actions = {},
   } = options;
 
   const content = [
