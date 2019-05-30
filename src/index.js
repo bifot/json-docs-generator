@@ -55,7 +55,7 @@ module.exports = async (options) => {
     });
   }
 
-  for (const { title, baseUrl, endpoints, actions } of Object.values(tags)) {
+  for (const { title, description, baseUrl, endpoints, actions } of Object.values(tags)) {
     const links = [];
 
     if (endpoints) {
@@ -74,8 +74,12 @@ module.exports = async (options) => {
 
     content.push(`## ${title}`);
 
+    if (description) {
+      content.push(description);
+    }
+
     if (baseUrl) {
-      content.push(`Base URL: ${baseUrl}`);
+      content.push(`*Base URL: ${baseUrl}*`);
     }
 
     content.push(links.join('\n'));

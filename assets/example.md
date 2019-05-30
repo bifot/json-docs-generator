@@ -4,7 +4,7 @@ Manage users via API
 
 ## Users
 
-Base URL: http://localhost:8080/api/v2
+*Base URL: http://localhost:8080/api/v2*
 
 - [Get users](#get-users)
 - [Create user](#create-user)
@@ -67,7 +67,7 @@ POST /users
 
 ## WebSockets
 
-Base URL: ws://localhost:3000
+*Base URL: ws://localhost:3000*
 
 - [Subscribe on event](#subscribe-on-event)
 
@@ -89,7 +89,9 @@ subscribe
 
 ## UDP
 
-Base URL: localhost:5000
+Heh, this is last part
+
+*Base URL: localhost:5000*
 
 - [Check authorization](#check-authorization)
 

@@ -13,6 +13,7 @@ module.exports = {
     },
     udp: {
       title: 'UDP',
+      description: 'Heh, this is last part',
       baseUrl: 'localhost:5000',
     },
   },
