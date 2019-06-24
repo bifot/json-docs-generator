@@ -1,8 +1,10 @@
+const normalize = response => Object.entries(response).reduce((object, [key, value]) => ({
+  ...object,
+  [key]: typeof value === 'function' ? typeof value() : value,
+}), {});
+
 module.exports = response => JSON.stringify(
-  Object.entries(response).reduce((object, [key, value]) => ({
-    ...object,
-    [key]: typeof value === 'function' ? typeof value() : value,
-  }), {}),
+  Array.isArray(response) ? response.map(normalize) : normalize(response),
   null,
   2,
 )
