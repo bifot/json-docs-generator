@@ -7,8 +7,6 @@
 - [Get user by id](#get-user-by-id)
 - [Create user](#create-user)
 
-___
-
 ### Get user by id
 
 #### URL
@@ -67,8 +65,6 @@ POST /users/:id
 
 - [Get user](#get-user)
 - [Create user](#create-user)
-
-___
 
 ### Get user
 

@@ -87,10 +87,13 @@ module.exports = async (options) => {
 
     if (endpoints) {
       Object.entries(endpoints).forEach(([endpoint, methods]) => {
-        Object.entries(methods).forEach(([method, meta]) => {
+        Object.entries(methods).forEach(([method, meta], index) => {
           const { title, headers, body, params, response, errors } = meta;
 
-          content.push('___');
+          if (index !== 0) {
+            content.push('___');
+          }
+
           content.push(`### ${title}`);
           content.push('#### URL');
           content.push(buildCode('sh', `${method.toUpperCase()} ${endpoint}`));
@@ -136,10 +139,13 @@ module.exports = async (options) => {
     }
 
     if (actions) {
-      Object.entries(actions).forEach(([action, meta]) => {
+      Object.entries(actions).forEach(([action, meta], index) => {
         const { title, description, params, response } = meta;
 
-        content.push('___');
+        if (index !== 0) {
+          content.push('___');
+        }
+
         content.push(`### ${title}`);
 
         if (description) {
