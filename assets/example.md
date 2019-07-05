@@ -4,8 +4,39 @@
 
 *Base URL: http://localhost:8080*
 
-- [Get user by id](#get-user-by-id)
 - [Create user](#create-user)
+- [Get user by id](#get-user-by-id)
+- [Delete user](#delete-user)
+
+### Create user
+
+#### URL
+
+```sh
+POST /users
+```
+
+#### Params
+
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| first_name | string | yes | - |
+| last_name | string | yes | - |
+
+#### Response
+
+```js
+{
+  ok: true
+}
+```
+
+#### Errors
+
+- **401** - Unauthorized
+- **403** - Access denied
+
+___
 
 ### Get user by id
 
@@ -31,20 +62,13 @@ GET /users/:id
 
 ___
 
-### Create user
+### Delete user
 
 #### URL
 
 ```sh
-POST /users/:id
+DELETE /users/:id
 ```
-
-#### Params
-
-| Parameter | Type | Required | Description
-|:---------:|:----:|:--------:|:----------:|
-| first_name | string | yes | - |
-| last_name | string | yes | - |
 
 #### Response
 

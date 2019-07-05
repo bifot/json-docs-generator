@@ -11,9 +11,26 @@ module.exports = {
     },
   },
   endpoints: {
+    '/users': {
+      post: {
+        title: 'Create user',
+        tags: 'http',
+        params: {
+          first_name: String,
+          last_name: String,
+        },
+        response: {
+          ok: true,
+        },
+        errors: {
+          401: 'Unauthorized',
+          403: 'Access denied',
+        },
+      },
+    },
     '/users/:id': {
       get: {
-        title: 'Get user by id',
+        title: 'Get user',
         tags: 'http',
         response: {
           first_name: String,
@@ -24,13 +41,9 @@ module.exports = {
           500: 'Server error',
         },
       },
-      post: {
-        title: 'Create user',
+      delete: {
+        title: 'Delete user',
         tags: 'http',
-        params: {
-          first_name: String,
-          last_name: String,
-        },
         response: {
           ok: true,
         },
