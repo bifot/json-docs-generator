@@ -1,4 +1,5 @@
 const fs = require('./utils/fs');
+const toArray = require('./utils/toArray');
 const buildUrl = require('./utils/buildUrl');
 const buildTable = require('./utils/buildTable');
 const buildCode = require('./utils/buildCode');
@@ -23,7 +24,7 @@ module.exports = async (options) => {
 
   for (const [endpoint, methods] of Object.entries(endpoints)) {
     for (const [method, meta] of Object.entries(methods)) {
-      meta.tags.forEach((tag) => {
+      toArray(meta.tags).forEach((tag) => {
         if (!tags[tag]) {
           return;
         }
@@ -42,7 +43,7 @@ module.exports = async (options) => {
   }
 
   for (const [action, meta] of Object.entries(actions)) {
-    meta.tags.forEach((tag) => {
+    toArray(meta.tags).forEach((tag) => {
       if (!tags[tag]) {
         return;
       }
@@ -89,6 +90,7 @@ module.exports = async (options) => {
         Object.entries(methods).forEach(([method, meta]) => {
           const { title, headers, body, params, response, errors } = meta;
 
+          content.push('___');
           content.push(`### ${title}`);
           content.push('#### URL');
           content.push(buildCode('sh', `${method.toUpperCase()} ${endpoint}`));
@@ -104,20 +106,12 @@ module.exports = async (options) => {
 
           if (body) {
             content.push('#### Body');
-            content.push([
-              '| Parameter | Type | Required | Description',
-              '|:---------:|:----:|:--------:|:----------:|',
-              ...buildTable(body),
-            ].join('\n'));
+            content.push(buildTable(body));
           }
 
           if (params) {
             content.push('#### Params');
-            content.push([
-              '| Parameter | Type | Required | Description',
-              '|:---------:|:----:|:--------:|:----------:|',
-              ...buildTable(params),
-            ].join('\n'));
+            content.push(buildTable(params));
           }
 
           if (response) {
@@ -145,6 +139,7 @@ module.exports = async (options) => {
       Object.entries(actions).forEach(([action, meta]) => {
         const { title, description, params, response } = meta;
 
+        content.push('___');
         content.push(`### ${title}`);
 
         if (description) {
@@ -156,11 +151,7 @@ module.exports = async (options) => {
 
         if (params) {
           content.push('#### Params');
-          content.push([
-            '| Parameter | Type | Required | Description',
-            '|:---------:|:----:|:--------:|:----------:|',
-            ...buildTable(params),
-          ].join('\n'));
+          content.push(buildTable(params));
         }
 
         if (response) {

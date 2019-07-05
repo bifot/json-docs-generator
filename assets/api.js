@@ -1,87 +1,67 @@
 module.exports = {
-  path: './example.md',
-  title: 'Simple doc',
-  description: 'Manage users via API',
+  title: 'Users',
   tags: {
-    users: {
-      title: 'Users',
-      baseUrl: 'http://localhost:8080/api/v2',
+    http: {
+      title: 'HTTP',
+      baseUrl: 'http://localhost:8080',
     },
-    ws: {
-      title: 'WebSockets',
-      baseUrl: 'ws://localhost:3000',
-    },
-    udp: {
-      title: 'UDP',
-      description: 'Heh, this is last part',
-      baseUrl: 'localhost:5000',
+    tcp: {
+      title: 'TCP',
+      baseUrl: 'localhost:10000',
     },
   },
   endpoints: {
-    '/users': {
+    '/users/:id': {
       get: {
-        title: 'Get users',
-        tags: ['users'],
-        headers: [
-          'Authorization: ***',
-        ],
+        title: 'Get user by id',
+        tags: 'http',
         response: {
-          first_name: 'string',
-          last_name: 'string',
+          first_name: String,
+          last_name: String,
         },
         errors: {
-          401: 'Unauthorized',
-          404: 'Not found',
-          429: 'Too many requests',
+          404: 'User is not found',
+          500: 'Server error',
         },
       },
       post: {
         title: 'Create user',
-        tags: ['users'],
-        body: {
-          first_name: {
-            type: 'string',
-            description: 'User\'s firstname',
-            required: true,
-          },
-          last_name: {
-            type: 'string',
-            description: 'User\'s lastname',
-            required: true,
-          },
-          photo: {
-            type: 'string',
-            required: false,
-          },
+        tags: 'http',
+        params: {
+          first_name: String,
+          last_name: String,
         },
         response: {
           ok: true,
         },
         errors: {
-          400: 'Invalid data',
-          429: 'Too many requests',
+          401: 'Unauthorized',
+          403: 'Access denied',
         },
       },
     },
   },
   actions: {
-    'subscribe': {
-      title: 'Subscribe on event',
-      description: 'I don\'t know what is it',
+    get: {
+      title: 'Get user',
+      tags: 'tcp',
       params: {
-        channels: [String, Array],
-      },
-      tags: ['ws'],
-    },
-    'checkAuth': {
-      title: 'Check authorization',
-      tags: ['udp'],
-      params: {
-        name: String,
-        password: String,
+        id: String,
       },
       response: {
-        ok: Boolean,
+        first_name: String,
+        last_name: String,
+      },
+    },
+    create: {
+      title: 'Create user',
+      tags: 'tcp',
+      params: {
+        first_name: String,
+        last_name: String,
+      },
+      response: {
+        ok: true,
       },
     },
   },
