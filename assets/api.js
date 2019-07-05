@@ -12,6 +12,23 @@ module.exports = {
   },
   endpoints: {
     '/users': {
+      get: {
+        title: 'Get users',
+        tags: 'http',
+        response: [
+          {
+            first_name: String,
+            last_name: String,
+            hobbies: [
+              {
+                title: String,
+                score: Number,
+              },
+            ],
+            age: [String, Number],
+          },
+        ],
+      },
       post: {
         title: 'Create user',
         tags: 'http',
@@ -33,8 +50,12 @@ module.exports = {
         title: 'Get user',
         tags: 'http',
         response: {
-          first_name: String,
-          last_name: String,
+          ok: Boolean,
+          user: {
+            first_name: String,
+            last_name: String,
+            age: [String, Number],
+          },
         },
         errors: {
           404: 'User is not found',
@@ -62,8 +83,12 @@ module.exports = {
         id: String,
       },
       response: {
-        first_name: String,
-        last_name: String,
+        ok: Boolean,
+        user: {
+          first_name: String,
+          last_name: String,
+          age: [String, Number],
+        },
       },
     },
     create: {

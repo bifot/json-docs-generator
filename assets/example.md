@@ -4,9 +4,39 @@
 
 *Base URL: http://localhost:8080*
 
+- [Get users](#get-users)
 - [Create user](#create-user)
-- [Get user by id](#get-user-by-id)
+- [Get user](#get-user)
 - [Delete user](#delete-user)
+
+### Get users
+
+#### URL
+
+```sh
+GET /users
+```
+
+#### Response
+
+```js
+[
+  {
+    first_name: 'string',
+    last_name: 'string',
+    hobbies: [
+      {
+        title: 'string',
+        score: 'number'
+      }
+    ],
+    age: [
+      'string',
+      'number'
+    ]
+  }
+]
+```
 
 ### Create user
 
@@ -38,7 +68,7 @@ POST /users
 
 ___
 
-### Get user by id
+### Get user
 
 #### URL
 
@@ -50,8 +80,15 @@ GET /users/:id
 
 ```js
 {
-  first_name: 'string',
-  last_name: 'string'
+  ok: 'boolean',
+  user: {
+    first_name: 'string',
+    last_name: 'string',
+    age: [
+      'string',
+      'number'
+    ]
+  }
 }
 ```
 
@@ -108,8 +145,15 @@ get
 
 ```js
 {
-  first_name: 'string',
-  last_name: 'string'
+  ok: 'boolean',
+  user: {
+    first_name: 'string',
+    last_name: 'string',
+    age: [
+      'string',
+      'number'
+    ]
+  }
 }
 ```
 
