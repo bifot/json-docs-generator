@@ -86,8 +86,8 @@ module.exports = async (options) => {
     content.push(links.join('\n'));
 
     if (endpoints) {
-      Object.entries(endpoints).forEach(([endpoint, methods]) => {
-        Object.entries(methods).forEach(([method, meta], index) => {
+      Object.entries(endpoints).forEach(([endpoint, methods], index) => {
+        Object.entries(methods).forEach(([method, meta]) => {
           const { title, headers, body, params, response, errors } = meta;
 
           if (index !== 0) {
