@@ -1,25 +1,19 @@
-# Simple doc
+# Users
 
-Manage users via API
+## HTTP
 
-## Users
+*Base URL: http://localhost:8080*
 
-*Base URL: http://localhost:8080/api/v2*
-
-- [Get users](#get-users)
+- [Get user by id](#get-user-by-id)
 - [Create user](#create-user)
 
-### Get users
+### Get user by id
 
 #### URL
 
 ```sh
-GET /users
+GET /users/:id
 ```
-
-#### Headers
-
-- Authorization: ***
 
 #### Response
 
@@ -32,25 +26,25 @@ GET /users
 
 #### Errors
 
-- **401** - Unauthorized
-- **404** - Not found
-- **429** - Too many requests
+- **404** - User is not found
+- **500** - Server error
+
+___
 
 ### Create user
 
 #### URL
 
 ```sh
-POST /users
+POST /users/:id
 ```
 
-#### Body
+#### Params
 
 | Parameter | Type | Required | Description
 |:---------:|:----:|:--------:|:----------:|
-| first_name | string | yes | User's firstname |
-| last_name | string | yes | User's lastname |
-| photo | string | no | - |
+| first_name | string | yes | - |
+| last_name | string | yes | - |
 
 #### Response
 
@@ -62,58 +56,60 @@ POST /users
 
 #### Errors
 
-- **400** - Invalid data
-- **429** - Too many requests
+- **401** - Unauthorized
+- **403** - Access denied
 
-## WebSockets
+## TCP
 
-*Base URL: ws://localhost:3000*
+*Base URL: localhost:10000*
 
-- [Subscribe on event](#subscribe-on-event)
+- [Get user](#get-user)
+- [Create user](#create-user)
 
-### Subscribe on event
-
-I don't know what is it
+### Get user
 
 #### Event
 
 ```sh
-subscribe
+get
 ```
 
 #### Params
 
 | Parameter | Type | Required | Description
 |:---------:|:----:|:--------:|:----------:|
-| channels | string/array | yes | - |
-
-## UDP
-
-Heh, this is last part
-
-*Base URL: localhost:5000*
-
-- [Check authorization](#check-authorization)
-
-### Check authorization
-
-#### Event
-
-```sh
-checkAuth
-```
-
-#### Params
-
-| Parameter | Type | Required | Description
-|:---------:|:----:|:--------:|:----------:|
-| name | string | yes | - |
-| password | string | yes | - |
+| id | string | yes | - |
 
 #### Response
 
 ```js
 {
-  ok: 'boolean'
+  first_name: 'string',
+  last_name: 'string'
+}
+```
+
+___
+
+### Create user
+
+#### Event
+
+```sh
+create
+```
+
+#### Params
+
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| first_name | string | yes | - |
+| last_name | string | yes | - |
+
+#### Response
+
+```js
+{
+  ok: true
 }
 ```

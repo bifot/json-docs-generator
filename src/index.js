@@ -1,4 +1,5 @@
 const fs = require('./utils/fs');
+const toArray = require('./utils/toArray');
 const buildUrl = require('./utils/buildUrl');
 const buildTable = require('./utils/buildTable');
 const buildCode = require('./utils/buildCode');
@@ -23,7 +24,7 @@ module.exports = async (options) => {
 
   for (const [endpoint, methods] of Object.entries(endpoints)) {
     for (const [method, meta] of Object.entries(methods)) {
-      meta.tags.forEach((tag) => {
+      toArray(meta.tags).forEach((tag) => {
         if (!tags[tag]) {
           return;
         }
@@ -42,7 +43,7 @@ module.exports = async (options) => {
   }
 
   for (const [action, meta] of Object.entries(actions)) {
-    meta.tags.forEach((tag) => {
+    toArray(meta.tags).forEach((tag) => {
       if (!tags[tag]) {
         return;
       }
@@ -86,8 +87,12 @@ module.exports = async (options) => {
 
     if (endpoints) {
       Object.entries(endpoints).forEach(([endpoint, methods]) => {
-        Object.entries(methods).forEach(([method, meta]) => {
+        Object.entries(methods).forEach(([method, meta], index) => {
           const { title, headers, body, params, response, errors } = meta;
+
+          if (index !== 0) {
+            content.push('___');
+          }
 
           content.push(`### ${title}`);
           content.push('#### URL');
@@ -104,20 +109,12 @@ module.exports = async (options) => {
 
           if (body) {
             content.push('#### Body');
-            content.push([
-              '| Parameter | Type | Required | Description',
-              '|:---------:|:----:|:--------:|:----------:|',
-              ...buildTable(body),
-            ].join('\n'));
+            content.push(buildTable(body));
           }
 
           if (params) {
             content.push('#### Params');
-            content.push([
-              '| Parameter | Type | Required | Description',
-              '|:---------:|:----:|:--------:|:----------:|',
-              ...buildTable(params),
-            ].join('\n'));
+            content.push(buildTable(params));
           }
 
           if (response) {
@@ -142,8 +139,12 @@ module.exports = async (options) => {
     }
 
     if (actions) {
-      Object.entries(actions).forEach(([action, meta]) => {
+      Object.entries(actions).forEach(([action, meta], index) => {
         const { title, description, params, response } = meta;
+
+        if (index !== 0) {
+          content.push('___');
+        }
 
         content.push(`### ${title}`);
 
@@ -156,11 +157,7 @@ module.exports = async (options) => {
 
         if (params) {
           content.push('#### Params');
-          content.push([
-            '| Parameter | Type | Required | Description',
-            '|:---------:|:----:|:--------:|:----------:|',
-            ...buildTable(params),
-          ].join('\n'));
+          content.push(buildTable(params));
         }
 
         if (response) {
