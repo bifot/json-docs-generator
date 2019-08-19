@@ -36,6 +36,10 @@ module.exports = (response) => {
     return response;
   }
 
+  if (typeof response === 'function') {
+    return typeof response();
+  }
+
   return JSON.stringify(
     Array.isArray(response) ? response.map(normalizeValue) : normalizeValue(response),
     null,
