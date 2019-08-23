@@ -78,17 +78,20 @@ GET /users/:id
 
 #### Response
 
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| first_name | string | yes | User's first name |
+| last_name | string | yes | User's last name |
+| age | string/number | no | User's age |
+
 ```js
 {
-  ok: 'boolean',
-  user: {
-    first_name: 'string',
-    last_name: 'string',
-    age: [
-      'string',
-      'number'
-    ]
-  }
+  first_name: 'string',
+  last_name: 'string',
+  age: [
+    'string',
+    'number'
+  ]
 }
 ```
 
@@ -145,15 +148,12 @@ get
 
 ```js
 {
-  ok: 'boolean',
-  user: {
-    first_name: 'string',
-    last_name: 'string',
-    age: [
-      'string',
-      'number'
-    ]
-  }
+  first_name: 'string',
+  last_name: 'string',
+  age: [
+    'string',
+    'number'
+  ]
 }
 ```
 

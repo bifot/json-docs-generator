@@ -50,8 +50,24 @@ module.exports = {
         title: 'Get user',
         tags: 'http',
         response: {
-          ok: Boolean,
-          user: {
+          schema: {
+            first_name: {
+              type: String,
+              required: true,
+              description: 'User\'s first name',
+            },
+            last_name: {
+              type: String,
+              required: true,
+              description: 'User\'s last name',
+            },
+            age: {
+              type: [String, Number],
+              required: false,
+              description: 'User\'s age',
+            },
+          },
+          example: {
             first_name: String,
             last_name: String,
             age: [String, Number],
@@ -83,12 +99,9 @@ module.exports = {
         id: String,
       },
       response: {
-        ok: Boolean,
-        user: {
-          first_name: String,
-          last_name: String,
-          age: [String, Number],
-        },
+        first_name: String,
+        last_name: String,
+        age: [String, Number],
       },
     },
     create: {

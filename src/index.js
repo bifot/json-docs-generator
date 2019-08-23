@@ -123,12 +123,13 @@ module.exports = async (options) => {
           }
 
           if (response) {
-            const formattedResponse = typeof response === 'object'
-              ? buildCode('js', formatResponse(response))
-              : response;
-
             content.push('#### Response');
-            content.push(formattedResponse);
+
+            if (response.schema) {
+              content.push(buildTable(response.schema));
+            }
+
+            content.push(buildCode('js', formatResponse(response.example || response)));
           }
 
           if (errors) {
