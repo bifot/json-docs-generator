@@ -10,26 +10,32 @@ const normalizeArray = value => value.map((item) => {
   return item;
 });
 
-const normalizeValue = response => Object.entries(response).reduce((object, [key, value]) => {
-  let formattedValue = value;
-
-  if (typeof value === 'function') {
-    formattedValue = typeof value();
+const normalizeValue = (response) => {
+  if (typeof response !== 'object') {
+    return response;
   }
 
-  if (typeof value === 'object' && Array.isArray(value)) {
-    formattedValue = normalizeArray(value);
-  }
+  return Object.entries(response).reduce((object, [key, value]) => {
+    let formattedValue = value;
 
-  if (typeof value === 'object' && !Array.isArray(value)) {
-    formattedValue = normalizeValue(value);
-  }
+    if (typeof value === 'function') {
+      formattedValue = typeof value();
+    }
 
-  return {
-    ...object,
-    [key]: formattedValue,
-  };
-}, {});
+    if (typeof value === 'object' && Array.isArray(value)) {
+      formattedValue = normalizeArray(value);
+    }
+
+    if (typeof value === 'object' && !Array.isArray(value)) {
+      formattedValue = normalizeValue(value);
+    }
+
+    return {
+      ...object,
+      [key]: formattedValue,
+    };
+  }, {});
+};
 
 module.exports = (response) => {
   if (typeof response === 'number' || typeof response === 'string') {
