@@ -88,13 +88,18 @@ module.exports = async (options) => {
     if (endpoints) {
       Object.entries(endpoints).forEach(([endpoint, methods], index) => {
         Object.entries(methods).forEach(([method, meta]) => {
-          const { title, headers, body, params, response, errors } = meta;
+          const { title, description, headers, body, params, response, errors } = meta;
 
           if (index !== 0) {
             content.push('___');
           }
 
           content.push(`### ${title}`);
+
+          if (description) {
+            content.push(description);
+          }
+
           content.push('#### URL');
           content.push(buildCode('sh', `${method.toUpperCase()} ${endpoint}`));
 
