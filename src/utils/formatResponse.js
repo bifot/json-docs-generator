@@ -11,7 +11,7 @@ const normalizeArray = value => value.map((item) => {
 });
 
 const normalizeValue = (response) => {
-  if (typeof response !== 'object') {
+  if (typeof response !== 'object' || response === null) {
     return response;
   }
 
