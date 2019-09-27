@@ -1,6 +1,6 @@
 {
   "name": "json-docs-generator",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Util for describe REST APIs via docs.",
   "main": "src/index.js",
   "scripts": {
