@@ -128,6 +128,7 @@ DELETE /users/:id
 *Base URL: localhost:10000*
 
 - [Get user](#get-user)
+- [Get users](#get-users)
 - [Create user](#create-user)
 
 ### Get user
@@ -155,6 +156,35 @@ get
     'number'
   ]
 }
+```
+
+### Get users
+
+#### Event
+
+```sh
+get
+```
+
+#### Params
+
+| Parameter | Type | Required | Description
+|:---------:|:----:|:--------:|:----------:|
+| ids | array | yes | - |
+
+#### Response
+
+```js
+[
+  {
+    first_name: 'string',
+    last_name: 'string',
+    age: [
+      'string',
+      'number'
+    ]
+  }
+]
 ```
 
 ___

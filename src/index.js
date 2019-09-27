@@ -43,16 +43,22 @@ module.exports = async (options) => {
   }
 
   for (const [action, meta] of Object.entries(actions)) {
-    toArray(meta.tags).forEach((tag) => {
-      if (!tags[tag]) {
-        return;
-      }
+    toArray(meta).forEach((meta) => {
+      toArray(meta.tags).forEach((tag) => {
+        if (!tags[tag]) {
+          return;
+        }
 
-      if (!tags[tag].actions) {
-        tags[tag].actions = {};
-      }
+        if (!tags[tag].actions) {
+          tags[tag].actions = {};
+        }
 
-      tags[tag].actions[action] = meta;
+        if (!tags[tag].actions[action]) {
+          tags[tag].actions[action] = [];
+        }
+
+        tags[tag].actions[action].push(meta);
+      });
     });
   }
 
@@ -68,8 +74,10 @@ module.exports = async (options) => {
     }
 
     if (actions) {
-      Object.values(actions).forEach((method) => {
-        links.push(`- [${method.title}](#${buildUrl(method.title)})`);
+      Object.values(actions).forEach((methods) => {
+        methods.forEach((method) => {
+          links.push(`- [${method.title}](#${buildUrl(method.title)})`);
+        });
       });
     }
 
@@ -145,31 +153,33 @@ module.exports = async (options) => {
     }
 
     if (actions) {
-      Object.entries(actions).forEach(([action, meta], index) => {
-        const { title, description, params, response } = meta;
+      Object.entries(actions).forEach(([action, items], index) => {
+        items.forEach((item) => {
+          const { title, description, params, response } = item;
 
-        if (index !== 0) {
-          content.push('___');
-        }
+          if (index !== 0) {
+            content.push('___');
+          }
 
-        content.push(`### ${title}`);
+          content.push(`### ${title}`);
 
-        if (description) {
-          content.push(description);
-        }
+          if (description) {
+            content.push(description);
+          }
 
-        content.push('#### Event');
-        content.push(buildCode('sh', action));
+          content.push('#### Event');
+          content.push(buildCode('sh', action));
 
-        if (params) {
-          content.push('#### Params');
-          content.push(buildTable(params));
-        }
+          if (params) {
+            content.push('#### Params');
+            content.push(buildTable(params));
+          }
 
-        if (response) {
-          content.push('#### Response');
-          content.push(buildCode('js', formatResponse(response)));
-        }
+          if (response) {
+            content.push('#### Response');
+            content.push(buildCode('js', formatResponse(response)));
+          }
+        });
       });
     }
   }

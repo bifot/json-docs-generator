@@ -92,18 +92,32 @@ module.exports = {
     },
   },
   actions: {
-    get: {
-      title: 'Get user',
-      tags: 'tcp',
-      params: {
-        id: String,
+    get: [
+      {
+        title: 'Get user',
+        tags: 'tcp',
+        params: {
+          id: String,
+        },
+        response: {
+          first_name: String,
+          last_name: String,
+          age: [String, Number],
+        },
       },
-      response: {
-        first_name: String,
-        last_name: String,
-        age: [String, Number],
-      },
-    },
+      {
+        title: 'Get users',
+        tags: 'tcp',
+        params: {
+          ids: Array,
+        },
+        response: [{
+          first_name: String,
+          last_name: String,
+          age: [String, Number],
+        }],
+      }
+    ],
     create: {
       title: 'Create user',
       tags: 'tcp',
